@@ -1,0 +1,33 @@
+{
+  "name": "cssdataurl-extract",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "file-saver": "^2.0.0",
+    "fs-extra": "^7.0.1",
+    "html-webpack-harddisk-plugin": "^1.0.1",
+    "image-data-uri": "^2.0.0",
+    "jszip": "^3.1.5",
+    "mime-types": "^2.1.21",
+    "normalize.css": "^8.0.1",
+    "postcss": "^7.0.7"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.4.3",
+    "clean-webpack-plugin": "^1.0.0",
+    "css-loader": "^2.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "postcss-loader": "^3.0.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.14"
+  }
+}
