@@ -12,13 +12,9 @@
   "dependencies": {
     "crypto-js": "^3.1.9-1",
     "file-saver": "^2.0.0",
-    "fs-extra": "^7.0.1",
-    "html-webpack-harddisk-plugin": "^1.0.1",
-    "image-data-uri": "^2.0.0",
     "jszip": "^3.1.5",
     "mime-types": "^2.1.21",
-    "normalize.css": "^8.0.1",
-    "postcss": "^7.0.7"
+    "normalize.css": "^8.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^9.4.3",
