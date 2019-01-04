@@ -41,8 +41,9 @@ function handleInput(value) {
     figure.classList.add('results__item');
     figure.insertAdjacentHTML(
       'beforeend',
-      `<img src="${dataBase64}">
-      <figcaption>${fileName}</figcaption>`
+      `<img src="${dataBase64}" alt="" title="${fileName}">
+    <div class="results__item-type">${extension}</div>
+    `
     );
 
     figure.addEventListener('click', () => saveAs(blob, fileName));

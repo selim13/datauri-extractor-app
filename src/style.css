@@ -1,3 +1,7 @@
+:root {
+  --color-accent: #08e;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -12,16 +16,23 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
   font-weight: 300;
-  color: #fff;
-  background: #000;
+  color: #333;
+  background: #fff;
 }
 
 .container {
   padding: 0 24px;
 }
 
+@media (min-width: 1000px) {
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+}
+
 h1 {
-  color: rgba(255, 255, 255, 0.95);
+  margin-top: 100px;
   text-align: center;
 }
 
@@ -30,44 +41,74 @@ textarea {
   min-height: 500px;
   padding: 24px;
   border: 0;
-  color: #eee;
-  background: #333;
+  color: #333;
+  background: #eee;
+  /* box-shadow: 0 10px 50px 10px rgba(0, 0, 0, 0.1); */
 }
 
 textarea::placeholder {
-  color: #fff;
+  color: #999;
+  text-align: center;
 }
 
 button {
-  padding: 12px;
-  border: 1px solid #fff;
+  display: inline-block;
+  padding: 8px 36px;
+  border: none;
   border-radius: 4px;
-  font-size: 24px;
-  color: #000;
-  background: #fff;
+  font-size: 18px;
+  color: #fff;
+  background: var(--color-accent);
   cursor: pointer;
   transition: all 0.15s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
-  border-color: #fff;
-  color: #fff;
-  background: #000;
+  transform: translateY(-3px);
+  box-shadow: 3px 5px 25px rgba(0, 0, 0, 0.2);
 }
 
 .results {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 16px;
-  margin-top: 24px;
+  margin: 36px 0;
 }
 
 .results__item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
   padding: 16px;
-  border: 1px solid #444;
+  /* border: 1px solid #444; */
+  background: #fafafa;
   cursor: pointer;
 }
 
 .results__item:hover {
-  background: #444;
+  background: #eee;
+}
+
+.results__item-type {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 2px;
+  font-size: 11px;
+  color: #fff;
+  font-weight: 500;
+  background: var(--color-accent);
+}
+
+.results__item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.bottom {
+  margin-bottom: 36px;
+  text-align: center;
 }
