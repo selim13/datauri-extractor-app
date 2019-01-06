@@ -6,10 +6,22 @@ import JSZip from 'jszip';
 
 import 'normalize.css';
 import './style.css';
+import exampleURL from './example.css.txt';
 
 const input = document.querySelector('.css-input');
 const results = document.querySelector('.results');
 const zipBtn = document.querySelector('.zip');
+const exampleBtn = document.querySelector('.example-button');
+
+exampleBtn.addEventListener('click', e => {
+  e.preventDefault();
+  fetch(exampleURL)
+    .then(res => res.text())
+    .then(data => {
+      input.value = data;
+      handleInput(data);
+    });
+});
 
 input.addEventListener('input', e => handleInput(e.target.value));
 handleInput(input.value);

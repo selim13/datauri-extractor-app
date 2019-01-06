@@ -36,6 +36,27 @@ h1 {
   text-align: center;
 }
 
+.subheading {
+  margin-bottom: 32px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.upload-panel {
+  margin-bottom: 8px;
+  text-align: right;
+}
+
+.example-button {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  border-bottom: 1px dashed var(--color-accent);
+  background: none;
+  color: var(--color-accent);
+  cursor: pointer;
+}
+
 textarea {
   width: 100%;
   min-height: 500px;
@@ -48,10 +69,11 @@ textarea {
 
 textarea::placeholder {
   color: #999;
+  font-size: 22px;
   text-align: center;
 }
 
-button {
+.zip {
   display: inline-block;
   padding: 8px 36px;
   border: none;
@@ -64,7 +86,7 @@ button {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-button:hover {
+.zip:hover {
   transform: translateY(-3px);
   box-shadow: 3px 5px 25px rgba(0, 0, 0, 0.2);
 }
