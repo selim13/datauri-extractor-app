@@ -13,6 +13,8 @@ const results = document.querySelector('.results');
 const zipBtn = document.querySelector('.zip');
 const exampleBtn = document.querySelector('.example-button');
 
+let zip;
+
 exampleBtn.addEventListener('click', e => {
   e.preventDefault();
   fetch(exampleURL)
@@ -25,6 +27,14 @@ exampleBtn.addEventListener('click', e => {
 
 input.addEventListener('input', e => handleInput(e.target.value));
 handleInput(input.value);
+
+zipBtn.addEventListener('click', () => {
+  if (!zip) return;
+
+  zip.generateAsync({ type: 'blob' }).then(function(blob) {
+    saveAs(blob, 'dataurl-bundle.zip');
+  });
+});
 
 function getURIs(code) {
   const pattern = /url\(['"]?(data:(.+?)(?:;.+?)?(;base64)?,(.+))['"]?\)/gi;
@@ -47,7 +57,7 @@ function handleInput(value) {
   results.innerHTML = '';
 
   const files = getURIs(value);
-  const zip = new JSZip();
+  zip = new JSZip();
 
   files.forEach(file => {
     const data = file.isBase64 ? new Buffer(file.data, 'base64') : file.data;
@@ -80,13 +90,9 @@ function handleInput(value) {
     );
 
     figure.addEventListener('click', () => saveAs(blob, fileName));
-
     results.appendChild(figure);
   });
 
-  zipBtn.addEventListener('click', () => {
-    zip.generateAsync({ type: 'blob' }).then(function(blob) {
-      saveAs(blob, 'dataurl-bundle.zip');
-    });
-  });
+  if (files.length > 0) zipBtn.classList.remove('hidden');
+  else zipBtn.classList.add('hidden');
 }

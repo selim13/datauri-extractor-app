@@ -134,3 +134,7 @@ textarea::placeholder {
   margin-bottom: 36px;
   text-align: center;
 }
+
+.hidden {
+  display: none;
+}
