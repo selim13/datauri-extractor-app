@@ -37,7 +37,7 @@ zipBtn.addEventListener('click', () => {
 });
 
 function getURIs(code) {
-  const pattern = /url\(['"]?(data:(.+?)(?:;.+?)?(;base64)?,(.+))['"]?\)/gi;
+  const pattern = /url\(['"]?(data:(.+?)(?:;.+=.+?)?(;base64)?,(.+))['"]?\)/gi;
 
   const result = [];
   let match;
@@ -64,11 +64,11 @@ function handleInput(value) {
     const extension = mimeTypes.extension(file.mediaType)
       ? mimeTypes.extension(file.mediaType)
       : 'bin';
-    const hash = hex.stringify(md5(data));
+    const hash = hex.stringify(md5(file.uri));
     const blob = new Blob([data], { type: file.mediaType });
     const fileName = `${hash}.${extension}`;
 
-    zip.file(`dataurl/${fileName}`, data);
+    zip.file(`dataurl/${fileName}`, blob);
 
     let img =
       "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z'/%3E%3C/svg%3E";
