@@ -37,7 +37,7 @@ zipBtn.addEventListener('click', () => {
 });
 
 function getURIs(code) {
-  const pattern = /url\(['"]?(data:(.+?)(?:;.+=.+?)?(;base64)?,(.+))['"]?\)/gi;
+  const pattern = /url\(['"]?(data:(.+?)(?:;.+=.+?)?(;base64)?,(.+?))['"]?\)/gi;
 
   const result = [];
   let match;
