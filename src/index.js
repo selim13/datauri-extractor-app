@@ -60,12 +60,19 @@ function handleInput(value) {
   zip = new JSZip();
 
   files.forEach(file => {
-    const data = file.isBase64 ? new Buffer(file.data, 'base64') : file.data;
     const extension = mimeTypes.extension(file.mediaType)
       ? mimeTypes.extension(file.mediaType)
       : 'bin';
-    const hash = hex.stringify(md5(file.uri));
+
+    let data;
+    if (file.isBase64) {
+      data = new Buffer(file.data, 'base64');
+    } else {
+      data = extension === 'svg' ? decodeURI(file.data) : file.data;
+    }
+
     const blob = new Blob([data], { type: file.mediaType });
+    const hash = hex.stringify(md5(file.uri));
     const fileName = `${hash}.${extension}`;
 
     zip.file(`dataurl/${fileName}`, blob);
