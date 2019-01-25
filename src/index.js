@@ -13,6 +13,10 @@ const results = document.querySelector('.results');
 const zipBtn = document.querySelector('.zip');
 const exampleBtn = document.querySelector('.example-button');
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/serviceWorker.js');
+}
+
 let zip;
 
 exampleBtn.addEventListener('click', e => {

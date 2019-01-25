@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
+const LocaltunnelPlugin = require('localtunnel-webpack-plugin');
 const common = require('./webpack.common');
 
 const smartMerge = merge.smartStrategy({
@@ -10,7 +11,11 @@ const smartMerge = merge.smartStrategy({
 
 module.exports = smartMerge(common, {
   mode: 'development',
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new LocaltunnelPlugin({ localtunnel: { subdomain: 'dataurl-extractor' } })
+  ],
   output: {
     filename: 'bundle.js'
   },
@@ -19,7 +24,8 @@ module.exports = smartMerge(common, {
     contentBase: path.resolve(__dirname, 'dist'),
     watchContentBase: true,
     host: '0.0.0.0',
-    hot: true
+    hot: true,
+    public: 'dataurl-extractor.localtunnel.me'
   },
   module: {
     rules: [
