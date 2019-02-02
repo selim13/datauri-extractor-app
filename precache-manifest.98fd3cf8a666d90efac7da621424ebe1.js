@@ -8,16 +8,16 @@ self.__precacheManifest = [
     "url": "main.f52661c9.css"
   },
   {
-    "revision": "f2ce80947516ab6b97f9a48bf36c25fc",
-    "url": "safari-pinned-tab.svg"
-  },
-  {
     "revision": "782125ba9a1672c898468fc48673bb2b",
     "url": "mstile-310x310.png"
   },
   {
-    "revision": "cbb4a3ad0443b83161d6247512f73ef4",
+    "revision": "28532b2e20a942506866e0f6afaaf57c",
     "url": "site.webmanifest"
+  },
+  {
+    "revision": "f2ce80947516ab6b97f9a48bf36c25fc",
+    "url": "safari-pinned-tab.svg"
   },
   {
     "revision": "ef2775e0eb36e8c55ace39aff0d4d6b5",
@@ -36,7 +36,7 @@ self.__precacheManifest = [
     "url": "main.d6209245.bundle.js"
   },
   {
-    "revision": "cd21faa4c870716940f283f077b0325e",
+    "revision": "f2eb6f5142210a7bccbfd01c3319f539",
     "url": "index.html"
   },
   {
@@ -52,7 +52,7 @@ self.__precacheManifest = [
     "url": "favicon-16x16.png"
   },
   {
-    "revision": "0af73f645d540446ab2db6b588593e9f",
+    "revision": "e2877a474623be3a51c69c51618b8d4d",
     "url": "browserconfig.xml"
   },
   {
