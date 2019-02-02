@@ -12,12 +12,12 @@ self.__precacheManifest = [
     "url": "mstile-310x310.png"
   },
   {
-    "revision": "28532b2e20a942506866e0f6afaaf57c",
-    "url": "site.webmanifest"
-  },
-  {
     "revision": "f2ce80947516ab6b97f9a48bf36c25fc",
     "url": "safari-pinned-tab.svg"
+  },
+  {
+    "revision": "9bb1dacdc9e4910f5df5d09eee898ee2",
+    "url": "site.webmanifest"
   },
   {
     "revision": "ef2775e0eb36e8c55ace39aff0d4d6b5",
