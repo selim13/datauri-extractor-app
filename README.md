@@ -1,6 +1,6 @@
-# dataurl-extractor-app
+# Data URI extractor
 
-A webapp made for fast and easy extraction of base64 encoded datauri assets.
+A webapp made for fast and easy extraction of base64 encoded data uri assets.
 
 Currently supports:
 
