@@ -1,3 +1,5 @@
+@import 'normalize.css';
+
 :root {
   --color-accent: #08e;
 }

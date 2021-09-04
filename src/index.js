@@ -1,41 +1,40 @@
-import mimeTypes from 'mime-types';
+import mime from 'mime';
 import md5 from 'crypto-js/md5';
 import hex from 'crypto-js/enc-hex';
+import Base64 from 'crypto-js/enc-base64';
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 
-import 'normalize.css';
-import './style.css';
-import exampleURL from './example.css.txt';
+import exampleURL from './example.css.txt?url';
 
 const input = document.querySelector('.css-input');
 const results = document.querySelector('.results');
 const zipBtn = document.querySelector('.zip');
 const exampleBtn = document.querySelector('.example-button');
 
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('serviceWorker.js');
-}
+// if ('serviceWorker' in navigator) {
+//   navigator.serviceWorker.register('serviceWorker.js');
+// }
 
 let zip;
 
-exampleBtn.addEventListener('click', e => {
+exampleBtn.addEventListener('click', (e) => {
   e.preventDefault();
   fetch(exampleURL)
-    .then(res => res.text())
-    .then(data => {
+    .then((res) => res.text())
+    .then((data) => {
       input.value = data;
       handleInput(data);
     });
 });
 
-input.addEventListener('input', e => handleInput(e.target.value));
+input.addEventListener('input', (e) => handleInput(e.target.value));
 handleInput(input.value);
 
 zipBtn.addEventListener('click', () => {
   if (!zip) return;
 
-  zip.generateAsync({ type: 'blob' }).then(function(blob) {
+  zip.generateAsync({ type: 'blob' }).then(function (blob) {
     saveAs(blob, 'dataurl-bundle.zip');
   });
 });
@@ -50,10 +49,37 @@ function getURIs(code) {
       uri: match[1],
       mediaType: match[2],
       isBase64: match[3] ? true : false,
-      data: match[4]
+      data: match[4],
     });
   }
 
+  return result;
+}
+
+/**
+ *
+ * @param {wordArray} wordArray
+ * @returns {Uint8Array}
+ */
+function CryptJsWordArrayToUint8Array(wordArray) {
+  const l = wordArray.sigBytes;
+  const words = wordArray.words;
+  const result = new Uint8Array(l);
+  let i = 0; /*dst*/
+  let j = 0; /*src*/
+
+  while (true) {
+    // here i is a multiple of 4
+    if (i == l) break;
+    const w = words[j++];
+    result[i++] = (w & 0xff000000) >>> 24;
+    if (i == l) break;
+    result[i++] = (w & 0x00ff0000) >>> 16;
+    if (i == l) break;
+    result[i++] = (w & 0x0000ff00) >>> 8;
+    if (i == l) break;
+    result[i++] = w & 0x000000ff;
+  }
   return result;
 }
 
@@ -63,19 +89,21 @@ function handleInput(value) {
   const files = getURIs(value);
   zip = new JSZip();
 
-  files.forEach(file => {
-    const extension = mimeTypes.extension(file.mediaType)
-      ? mimeTypes.extension(file.mediaType)
+  files.forEach((file) => {
+    const extension = mime.getExtension(file.mediaType)
+      ? mime.getExtension(file.mediaType)
       : 'bin';
 
     let data;
     if (file.isBase64) {
-      data = new Buffer(file.data, 'base64');
+      data = Base64.parse(file.data);
     } else {
       data = extension === 'svg' ? decodeURI(file.data) : file.data;
     }
 
-    const blob = new Blob([data], { type: file.mediaType });
+    const blobData =
+      typeof data === 'string' ? data : CryptJsWordArrayToUint8Array(data);
+    const blob = new Blob([blobData], { type: file.mediaType });
     const hash = hex.stringify(md5(file.uri));
     const fileName = `${hash}.${extension}`;
 
