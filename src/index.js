@@ -6,6 +6,7 @@ import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 
 import exampleURL from './example.css.txt?url';
+import { extract, parse } from './dataUri.js';
 
 const input = document.querySelector('.css-input');
 const results = document.querySelector('.results');
@@ -40,20 +41,7 @@ zipBtn.addEventListener('click', () => {
 });
 
 function getURIs(code) {
-  const pattern = /url\(['"]?(data:(.+?)(?:;.+=.+?)?(;base64)?,(.+?))['"]?\)/gi;
-
-  const result = [];
-  let match;
-  while ((match = pattern.exec(code))) {
-    result.push({
-      uri: match[1],
-      mediaType: match[2],
-      isBase64: match[3] ? true : false,
-      data: match[4],
-    });
-  }
-
-  return result;
+  return extract(code).map((uri) => parse(uri));
 }
 
 /**
