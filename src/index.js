@@ -89,6 +89,8 @@ function handleInput(value) {
       data = extension === 'svg' ? decodeURI(file.data) : file.data;
     }
 
+    console.log(file);
+
     const blobData =
       typeof data === 'string' ? data : CryptJsWordArrayToUint8Array(data);
     const blob = new Blob([blobData], { type: file.mediaType });
@@ -104,8 +106,16 @@ function handleInput(value) {
       img =
         "data:image/svg+xml,%3Csvg baseProfile='tiny' xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath fill='none' d='M0 0h24v24H0V0z'/%3E%3Cpath d='M9.93 13.5h4.14L12 7.98zM20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-4.05 16.5l-1.14-3H9.17l-1.12 3H5.96l5.11-13h1.86l5.11 13h-2.09z'/%3E%3C/svg%3E";
 
-    if (['png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'svg'].includes(extension))
+    if (
+      ['png', 'jpg', 'jpeg', 'gif', 'bmp', 'webp', 'svg'].includes(extension)
+    ) {
       img = file.uri;
+
+      // svg should be uri encoded to be displayed in img
+      if (extension === 'svg' && !img.includes('%3C')) {
+        img = encodeURI(img);
+      }
+    }
 
     const figure = document.createElement('figure');
     figure.classList.add('results__item');
