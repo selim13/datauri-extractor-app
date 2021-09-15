@@ -1,4 +1,3 @@
-import mime from 'mime';
 import md5 from 'crypto-js/md5';
 import hex from 'crypto-js/enc-hex';
 import Base64 from 'crypto-js/enc-base64';
@@ -7,6 +6,7 @@ import JSZip from 'jszip';
 
 import exampleURL from './example.css.txt?url';
 import { extract, parse } from './dataUri.js';
+import { getExtension } from './mime.js';
 
 const input = document.querySelector('.css-input');
 const results = document.querySelector('.results');
@@ -78,9 +78,8 @@ function handleInput(value) {
   zip = new JSZip();
 
   files.forEach((file) => {
-    const extension = mime.getExtension(file.mediaType)
-      ? mime.getExtension(file.mediaType)
-      : 'bin';
+    const extension = getExtension(file.mediaType);
+    console.log(file.mediaType, extension);
 
     let data;
     if (file.isBase64) {
@@ -88,8 +87,6 @@ function handleInput(value) {
     } else {
       data = extension === 'svg' ? decodeURI(file.data) : file.data;
     }
-
-    console.log(file);
 
     const blobData =
       typeof data === 'string' ? data : CryptJsWordArrayToUint8Array(data);
