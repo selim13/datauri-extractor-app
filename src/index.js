@@ -117,7 +117,7 @@ function handleInput(value) {
       }
     }
 
-    const figure = document.createElement('figure');
+    const figure = document.createElement('button');
     figure.classList.add('results__item');
     figure.insertAdjacentHTML(
       'beforeend',
