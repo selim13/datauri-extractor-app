@@ -10,7 +10,7 @@
     "build": "vite build",
     "serve": "vite preview",
     "test": "uvu test",
-    "deploy": "gh-pages -d dist"    
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "crypto-js": "^4.1.1",
@@ -23,6 +23,7 @@
     "autoprefixer": "^10.3.4",
     "gh-pages": "^2.0.1",
     "uvu": "^0.5.1",
-    "vite": "^2.5.3"
+    "vite": "^2.5.3",
+    "vite-plugin-compression": "^0.3.5"
   }
 }
